@@ -4,18 +4,44 @@
 
 wordpress_sites:
   example.com:
+    branch: master
+
+    # Nginx FastCGI cache options.
+    # Before enabling, see cache docs:
+    # https://roots.io/trellis/docs/fastcgi-caching/
+    cache:
+      enabled: false
+
+    #symlink to latest release
+    current_path: current
+
+    # auto create database
+    db_create: true
+
+    # path targeting Bedrock-based site directory (required)
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
+
+    # code repo
+    repo: https://github.com/rianfowler/wordpress-ci-poc
+
+    repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
+
+    # multiple hosts and redirects are possible
+    # Before enablabing see multisite docs:
+    # https://roots.io/trellis/docs/multisite/
+    multisite:
+      enabled: false
+
+    # Token used to authenticate Packagist.com for private Composer repos
+    # packagist_token:
+
+    # list of hosts that Nginx will listen on. Add redirects here
     site_hosts:
       - canonical: staging.example.com
         # redirects:
         #   - otherdomain.com
-    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: git@github.com:example/example.com.git # replace with your Git repo URL
-    repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
-    branch: master
-    multisite:
-      enabled: false
+
+    # SSL options
     ssl:
       enabled: false
       provider: letsencrypt
-    cache:
-      enabled: false
