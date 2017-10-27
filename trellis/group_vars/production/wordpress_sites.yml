@@ -3,7 +3,7 @@
 # Define accompanying passwords/secrets in group_vars/production/vault.yml
 
 wordpress_sites:
-  example.com:
+  poc-test.rian.codes:
     site_hosts:
       - canonical: poc-test.rian.codes
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
