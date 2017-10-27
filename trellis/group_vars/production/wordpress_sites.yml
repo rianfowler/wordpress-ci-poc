@@ -7,7 +7,7 @@ wordpress_sites:
     site_hosts:
       - canonical: poc-test.rian.codes
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: https://github.com/rianfowler/wordpress-ci-poc
+    repo: git@github.com:rianfowler/wordpress-ci-poc.git
     repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
     branch: master
     multisite:
