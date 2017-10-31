@@ -1,41 +1,29 @@
+version: 2
+jobs:
+    test:
+        docker:
+            - image: circleci/php:7.1.4-cli
+        filters:
+            branches:
+                only:
+                    - test
+        working_directory: site
+        steps:
+            - run: pip install ansible
+            - run: ../trellis/bin/deploy.sh test poc-test.rian.codes
 workflows:
     version: 2
     test_stage_prod:
         jobs:
-            - test:
-                docker:
-                    - image: circleci/php:7.1.4-cli
-                filters:
-                    branches:
-                        only:
-                            - test
-                working_directory: site
-                steps:
-                    - run: pip install ansible
-                      # - run: npm install
-                      # - run: composer install
-                    - run: ../trellis/bin/deploy.sh test poc-test.rian.codes
-
-            - qa-aproval:
+            - test
+            - push-test-code-to-staging:
                 type: approval
                 requires:
                     - test
-            - stage:
-                docker:
-                    - image: circleci/php:7.1.4-cli
-                filters:
-                    branches:
-                        only:
-                            - stage
+            - push-test-db-to-staging:
+                type: approval
                 requires:
-                    - qa-approval
-            - production:
-                docker:
-                    - image: circleci/php:7.1.4-cli
-                filters:
-                    branches:
-                        only:
-                            - test
+                    - test
 # General config
 #general:
 #  build_dir: site
