@@ -1,30 +1,38 @@
+version: 2
+
+jobs:
+    build: circleci/php:7.1.4-cli
+    steps:
+        - checkout
+        - run: echo "hello world"
+
 # General config
-general:
-  build_dir: site
-
-# Configure the machine
-machine:
-  timezone:
-    Europe/London
-  node:
-    version: 6.0.0
-  python:
-    version: 2.7.10
-
-dependencies:
-  pre:
-    - pip install ansible
-  override:
-    - npm install
-    - composer install
-
-test:
-  override:
-    - npm run test
-
-# Deploy
-deployment:
-  staging:
-    branch: staging
-    commands:
-      - ../trellis/bin/deploy.sh staging example.com
+#general:
+#  build_dir: site
+#
+## Configure the machine
+#machine:
+#  timezone:
+#      America/Los_Angeles
+#  node:
+#    version: 6.0.0
+#  python:
+#    version: 2.7.10
+#
+#dependencies:
+#  pre:
+#    - pip install ansible
+#  override:
+#    - npm install
+#    - composer install
+#
+#test:
+#  override:
+#    - npm run test
+#
+## Deploy
+#deployment:
+#  staging:
+#    branch: staging
+#    commands:
+#      - ../trellis/bin/deploy.sh staging example.com
