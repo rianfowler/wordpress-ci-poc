@@ -1,47 +1,17 @@
-# Documentation: https://roots.io/trellis/docs/remote-server-setup/
-# `wordpress_sites` options: https://roots.io/trellis/docs/wordpress-sites
-# Define accompanying passwords/secrets in group_vars/staging/vault.yml
+# Define accompanying passwords/secrets in group_vars/production/vault.yml
 
 wordpress_sites:
-  example.com:
-    branch: master
-
-    # Nginx FastCGI cache options.
-    # Before enabling, see cache docs:
-    # https://roots.io/trellis/docs/fastcgi-caching/
-    cache:
-      enabled: false
-
-    #symlink to latest release
-    current_path: current
-
-    # auto create database
-    db_create: true
-
-    # path targeting Bedrock-based site directory (required)
+  poc-staging.rian.codes:
+    site_hosts:
+      - canonical: poc-staging.rian.codes
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-
-    # code repo
-    repo: https://github.com/rianfowler/wordpress-ci-poc
-
+    repo: git@github.com:rianfowler/wordpress-ci-poc.git
     repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
-
-    # multiple hosts and redirects are possible
-    # Before enablabing see multisite docs:
-    # https://roots.io/trellis/docs/multisite/
+    branch: staging
     multisite:
       enabled: false
-
-    # Token used to authenticate Packagist.com for private Composer repos
-    # packagist_token:
-
-    # list of hosts that Nginx will listen on. Add redirects here
-    site_hosts:
-      - canonical: staging.example.com
-        # redirects:
-        #   - otherdomain.com
-
-    # SSL options
     ssl:
       enabled: false
       provider: letsencrypt
+    cache:
+      enabled: false
