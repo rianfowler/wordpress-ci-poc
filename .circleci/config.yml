@@ -1,0 +1,30 @@
+# General config
+general:
+    build_dir: site
+
+    # Configure the machine
+    machine:
+        timezone:
+            Europe/London
+        node:
+            version: 6.0.0
+            python:
+                version: 2.7.10
+
+                dependencies:
+                    pre:
+                        - pip install ansible
+                    override:
+                        - npm install
+                        - composer install
+
+                    test:
+                        override:
+                            - npm run test
+
+                              # Deploy
+                        deployment:
+                            test:
+                                branch: test
+                                commands:
+                                    - ../trellis/bin/deploy.sh test poc-test.rian.codes
