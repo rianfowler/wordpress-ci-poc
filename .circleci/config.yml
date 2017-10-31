@@ -4,9 +4,9 @@ jobs:
     build:
         docker:
             - image: circleci/php:7.1.4-cli
-    steps:
-        - checkout
-        - run: echo "hello world"
+        steps:
+            - checkout
+            - run: echo "hello world"
 
 # General config
 #general:
