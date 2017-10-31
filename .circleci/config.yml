@@ -9,7 +9,6 @@ jobs:
                     - test
         working_directory: site
         steps:
-            - run: pip install ansible
             - run: ../trellis/bin/deploy.sh test poc-test.rian.codes
 workflows:
     version: 2
