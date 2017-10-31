@@ -3,13 +3,13 @@
 # Define accompanying passwords/secrets in group_vars/production/vault.yml
 
 wordpress_sites:
-  poc.rian.codes:
+  poc-test.rian.codes:
     site_hosts:
-      - canonical: poc.rian.codes
+      - canonical: poc-test.rian.codes
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     repo: git@github.com:rianfowler/wordpress-ci-poc.git
     repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
-    branch: master
+    branch: test
     multisite:
       enabled: false
     ssl:
