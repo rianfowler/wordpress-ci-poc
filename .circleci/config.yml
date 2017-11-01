@@ -8,7 +8,7 @@ jobs:
                 only:
                     - test
         steps:
-            - pip ansible install
+            - run: pip ansible install
             - run: ../trellis/bin/deploy.sh test poc-test.rian.codes
 workflows:
     version: 2
